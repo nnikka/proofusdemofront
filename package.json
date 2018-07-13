@@ -10,7 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "vue": "^2.5.2",
+    "ursa": "^0.9.4",
+    "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuetify": "^1.1.4"
   },

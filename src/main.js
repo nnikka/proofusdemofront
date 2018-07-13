@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 
+
 Vue.use(Vuetify, {
   theme: {
     primary: '#3498db',

@@ -10,6 +10,16 @@
                 <h1 class="lg-header">Register company</h1>
                 <br>
                 <div class="lg-form-container">
+                  <v-text-field
+                    v-model="formData.id"
+                    label="Identification Code"
+                    required
+                  ></v-text-field>
+                  <v-textarea
+                    v-model="formData.description"
+                    label="Description"
+                    required
+                  ></v-textarea>
                   <v-form v-model="valid">
                     <v-text-field
                       v-model="formData.name"
@@ -29,6 +39,8 @@
                 </div>
                 </div>
               </v-card-title>
+              <p>Public key: {{publicKey}}</p>
+              <p>Private key: {{privateKey}}</p>
             </v-card>
           </v-flex>
         <v-flex xs4></v-flex>
@@ -44,6 +56,8 @@ export default {
     return {
       loading: true,
       valid: false,
+      publicKey:'',
+      privateKey:'',
       formData: {
         email: '',
         name: '',
@@ -59,8 +73,17 @@ export default {
     }
   },
   beforeMount () {
-
+   
   },
+  computed:{
+    getPublicKey(){
+      return this.formData.id + this.formData.name + this.formData.description + this.formData.email;
+    },
+    getPrivateKey(){
+
+    }
+  },
+  
   methods: {
     submit() {
 
