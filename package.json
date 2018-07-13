@@ -10,6 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "keypair": "^1.0.1",
+    "node-forge": "^0.7.5",
     "ursa": "^0.9.4",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
