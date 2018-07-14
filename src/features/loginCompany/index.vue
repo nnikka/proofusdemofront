@@ -12,15 +12,14 @@
                 <div class="lg-form-container">
                   <v-form v-model="valid">
                     <v-text-field
-                      v-model="formData.name"
-                      label="Name"
-                      required
+                      v-model="formData.id"
+                      label="Identification Code"
+                      :rules="idRules"
                     ></v-text-field>
                     <v-text-field
                       v-model="formData.email"
                       :rules="emailRules"
                       label="E-mail"
-                      required
                     ></v-text-field>
                   </v-form>
                   <v-btn :disabled="!valid" color="blue darken-1" class="white--text sep-btn" @click="submit()">
@@ -38,10 +37,8 @@
 </template>
 
 <script>
-
 import keypair from 'keypair'
 import forge from 'node-forge'
-
 export default {
   data() {
     return {
@@ -49,24 +46,19 @@ export default {
       valid: false,
       formData: {
         email: '',
-        name: '',
-        phone: '',
         id: '',
-        description: '',
       },
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ],
+      idRules: [
+        v => !!v || 'Id is required'
+      ],
       error: false,
     }
   },
-  beforeMount () {
-    var pair = keypair();
-    var publicKey = forge.pki.publicKeyFromPem(pair.public);
-    var ssh = forge.ssh.publicKeyToOpenSSH(publicKey, 'user@domain.tld');
-    console.log(ssh);
-  },
+  
   methods: {
     submit() {
 

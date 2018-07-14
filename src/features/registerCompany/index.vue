@@ -10,27 +10,31 @@
                 <h1 class="lg-header">Register company</h1>
                 <br>
                 <div class="lg-form-container">
-                  <v-text-field
-                    v-model="formData.id"
-                    label="Identification Code"
-                    required
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="formData.description"
-                    label="Description"
-                    required
-                  ></v-textarea>
                   <v-form v-model="valid">
+                    <v-text-field
+                      v-model="formData.id"
+                      label="Identification Code"
+                      :rules="idRules"
+                    ></v-text-field>
+                    <v-textarea
+                      v-model="formData.description"
+                      label="Description"
+                      :rules="descriptionRules"
+                    ></v-textarea>
                     <v-text-field
                       v-model="formData.name"
                       label="Name"
-                      required
+                      :rules="nameRules"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="formData.phone"
+                      label="Phone"
+                      :rules="phoneRules"
                     ></v-text-field>
                     <v-text-field
                       v-model="formData.email"
                       :rules="emailRules"
                       label="E-mail"
-                      required
                     ></v-text-field>
                   </v-form>
                   <v-btn :disabled="!valid" color="blue darken-1" class="white--text sep-btn" @click="submit()">
@@ -39,8 +43,17 @@
                 </div>
                 </div>
               </v-card-title>
-              <p>Public key: {{publicKey}}</p>
-              <p>Private key: {{privateKey}}</p>
+
+              <v-card color="blue-grey darken-2" class="white--text">
+                <v-card-title primary-title>
+                  <div>
+                    <div>Public key: {{publicKey}}</div>
+                    <br>
+                    <div>Private key: {{privateKey}}</div>
+                  </div>
+                </v-card-title>
+              </v-card>
+
             </v-card>
           </v-flex>
         <v-flex xs4></v-flex>
@@ -65,10 +78,23 @@ export default {
         phone: '',
         id: '',
         description: '',
+        phone: ''
       },
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+      ],
+      nameRules: [
+        v => !!v || 'Name is required'
+      ],
+      idRules: [
+        v => !!v || 'Id is required'
+      ],
+      descriptionRules: [
+        v => !!v || 'Description is required'
+      ],
+      phoneRules: [
+        v => !!v || 'Phone is required'
       ],
       error: false,
     }
