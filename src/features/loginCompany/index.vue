@@ -7,7 +7,7 @@
           <v-card>
             <v-card-title primary-title>
               <div class="fluid">
-                <h1 class="lg-header">Register company</h1>
+                <h1 class="lg-header">Login company</h1>
                 <br>
                 <div class="lg-form-container">
                   <v-form v-model="valid">
@@ -63,9 +63,9 @@ export default {
   },
   beforeMount () {
     var pair = keypair();
-var publicKey = forge.pki.publicKeyFromPem(pair.public);
-var ssh = forge.ssh.publicKeyToOpenSSH(publicKey, 'user@domain.tld');
-console.log(ssh);
+    var publicKey = forge.pki.publicKeyFromPem(pair.public);
+    var ssh = forge.ssh.publicKeyToOpenSSH(publicKey, 'user@domain.tld');
+    console.log(ssh);
   },
   methods: {
     submit() {
