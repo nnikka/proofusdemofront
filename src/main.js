@@ -4,8 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
-
-
+import VueResource from 'vue-resource'
 Vue.use(Vuetify, {
   theme: {
     primary: '#3498db',
@@ -17,6 +16,8 @@ Vue.use(Vuetify, {
     warning: '#FFC107'
   }
 })
+Vue.use(VueResource)
+
 
 Vue.config.productionTip = false
 
