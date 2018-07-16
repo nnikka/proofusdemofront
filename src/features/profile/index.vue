@@ -2,6 +2,14 @@
     <div>
 
         <h1>Profile Info</h1>
+        <p>company id:{{id}}</p>
+        <p>address created from:{{address}}</p>
+        <p>phone:{{phone}}</p>
+        <p>email:{{email}}</p>
+        <p>description:{{description}}</p>
+        <p>name:{{name}}</p>
+        <p>Am i confirmed:{{isConfirmed}}</p>
+        <p></p>
     </div>
 </template>
 <script>
@@ -9,14 +17,30 @@ import {mapState} from 'vuex'
 import {company_abi} from '../../contract/company_abi'
 import {web3} from '../../web3'
 export default {
-    
 
+    data(){
+        return{
+            id:'',
+            description:'',
+            phone:'',
+            email:'',
+            address:'',
+            name:'',
+            isConfirmed:'',
+        }
+    },
     beforeMount(){
-        
         if(this.company.address){
             let companyContract = new web3.eth.Contract(company_abi,this.company.address)
-            companyContract.methods.description().call().then(nikoloz=>{
-                console.log(nikoloz)
+            companyContract.methods.getCompanyInfo().call().then(companyInfo=>{
+                this.address = companyInfo[0];
+                this.id = companyInfo[1];
+                this.phone = companyInfo[2];
+                this.name = companyInfo[3];
+                this.description = companyInfo[4];
+                this.email = companyInfo[5];
+                this.isConfirmed = companyInfo[6];
+                
             })
         }
     },
