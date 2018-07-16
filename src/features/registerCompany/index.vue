@@ -49,9 +49,9 @@
               <v-card color="blue-grey darken-2" class="white--text">
                 <v-card-title primary-title>
                   <div>
-                    <div>Public key: {{publicKey}}</div>
+                    <!-- <div>Public key: {{publicKey}}</div>
                     <br>
-                    <div>Private key: {{privateKey}}</div>
+                    <div>Private key: {{privateKey}}</div> -->
                   </div>
                 </v-card-title>
               </v-card>
@@ -68,7 +68,7 @@
 import keypair from 'keypair'
 import forge from 'node-forge'
 
-import contractOption from '../../contract/address_abi.js'
+import contractOption from '../../contract/company_factory_contract.js'
 
 
 export default {
@@ -114,18 +114,21 @@ export default {
   
   methods: {
     submit() {
-    
       contractOption.web3.eth.getAccounts().then(accounts=>{
         var account = accounts[0];
-        contractOption.contract.methods.deployContract(
+        contractOption.contract.methods
+                    .deployContract(
                             parseInt(this.formData.id),
                             this.formData.name,
                             this.formData.description,
                             this.formData.email,
                             parseInt(this.formData.phone)
-                          ).send({from:account}).then(address=>{
-                            console.log(address)
-                          })
+                    ).send({from:account,gas:1000000}).then(address=>{
+                      var r = confirm("You've been registered successfully! Click ok or add another company");
+                      if (r == true) {
+                        this.$router.push({name: "LoginCompany"})     
+                      }
+                    })
       },(err)=>{
 
       })

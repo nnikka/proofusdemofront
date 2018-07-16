@@ -39,6 +39,8 @@
 <script>
 import keypair from 'keypair'
 import forge from 'node-forge'
+import contractOption from '../../contract/company_factory_contract.js'
+import {mapState} from 'vuex'
 export default {
   data() {
     return {
@@ -61,8 +63,21 @@ export default {
   
   methods: {
     submit() {
-
+      contractOption.contract.methods.getCompanyById(this.formData.id).call().then(address=>{
+        var checkAddress = !(/^0x0+$/.test(address))
+        if(checkAddress){
+          this.company.address = address;
+          this.$router.push({name:'ProfilePage'})
+        }else{
+          alert("Company doesn't exist");
+        }
+      })
     }
+  },
+  computed:{
+    ...mapState([
+      'company'
+    ])
   }
 }
 </script>
