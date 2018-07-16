@@ -4,6 +4,8 @@ import WelcomePage from '../features/welcome'
 import RegisterCompany from '../features/registerCompany'
 import LoginCompany from '../features/loginCompany'
 import ProfilePage from '../features/profile'
+import RegisterProduct from '../features/registerProduct'
+
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +30,11 @@ export default new Router({
       path: '/profile_page',
       name: 'ProfilePage',
       component: ProfilePage
+    },
+    {
+      path: '/register_product',
+      name: 'RegisterProduct',
+      component: RegisterProduct
     }
   ]
 })
