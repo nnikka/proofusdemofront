@@ -10,7 +10,27 @@
         <p>name:{{name}}</p>
         <p>Am i confirmed:{{isConfirmed}}</p>
         <p></p>
-    </div>
+    
+    <h1>Profile Info</h1>
+    <br>
+    <br>
+    <v-layout row wrap>
+      <v-flex >
+        <v-card color="blue-grey darken-2" class="white--text">
+          <v-card-title primary-title>
+            <div>
+              <h3 class="headline mb-0">Add Product</h3>
+              <br>
+              <div>Listen to your favorite artists and albums whenever and wherever, online and offline.</div>
+            </div>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn flat dark @click="goToRegisterCompany()" >Add product</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 <script>
 import {mapState} from 'vuex'
@@ -45,10 +65,16 @@ export default {
         }
     },
 
-    computed:{
-        ...mapState([
-            'company'
-        ])
+  
+  computed:{
+    ...mapState([
+      'company'
+    ])
+  },
+  methods: {
+    goToRegisterCompany() {
+      this.$router.push({name: 'RegisterProduct'})
     }
+  }
 }
 </script>
